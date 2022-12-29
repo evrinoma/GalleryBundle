@@ -1,0 +1,39 @@
+Evrinoma\GalleryBundle\Model\File\AbstractFile:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true
+    brief:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true
+    description:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true
+    active:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true
+    position:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true
+    image:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true

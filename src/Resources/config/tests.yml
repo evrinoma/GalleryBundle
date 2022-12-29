@@ -1,0 +1,3 @@
+imports:
+  - { resource: tests/gallery.yml }
+  - { resource: tests/file.yml }

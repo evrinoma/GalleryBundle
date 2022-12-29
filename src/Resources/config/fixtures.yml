@@ -1,0 +1,10 @@
+services:
+  evrinoma.gallery.fixtures.gallery:
+    class: Evrinoma\GalleryBundle\Fixtures\GalleryFixtures
+    tags:
+      - { name: doctrine.fixture.orm }
+
+  evrinoma.gallery.fixtures.file:
+    class: Evrinoma\GalleryBundle\Fixtures\FileFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

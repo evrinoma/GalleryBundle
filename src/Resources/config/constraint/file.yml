@@ -1,0 +1,11 @@
+services:
+  evrinoma.gallery.constraint.property.file.description:
+    class: Evrinoma\GalleryBundle\Constraint\Property\File\Description
+  evrinoma.gallery.constraint.property.file.brief:
+    class: Evrinoma\GalleryBundle\Constraint\Property\File\Brief
+  evrinoma.gallery.constraint.property.file.active:
+    class: Evrinoma\GalleryBundle\Constraint\Property\File\Active
+  evrinoma.gallery.constraint.property.file.image:
+    class: Evrinoma\GalleryBundle\Constraint\Property\File\Image
+  evrinoma.gallery.constraint.property.file.position:
+    class: Evrinoma\GalleryBundle\Constraint\Property\File\Position

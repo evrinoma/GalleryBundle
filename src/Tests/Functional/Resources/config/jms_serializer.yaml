@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      GalleryBundle:
+        namespace_prefix: "Evrinoma\\GalleryBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/GalleryBundle'

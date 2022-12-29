@@ -1,0 +1,3 @@
+galleryapi:
+  resource: "@EvrinomaGalleryBundle/Resources/config/routing/api.yml"
+  prefix: evrinoma

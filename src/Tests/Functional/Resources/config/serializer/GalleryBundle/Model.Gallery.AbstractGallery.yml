@@ -1,0 +1,40 @@
+Evrinoma\GalleryBundle\Model\Gallery\AbstractGallery:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    active:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    title:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    position:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    image:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    preview:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    description:
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    start:
+      type: DateTimeImmutable<'Y-m-d'>
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true
+    file:
+      type: Evrinoma\GalleryBundle\Entity\File\BaseFile
+      groups: [ API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY, ]
+      expose: true

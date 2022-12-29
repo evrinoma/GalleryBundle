@@ -1,0 +1,2 @@
+gallery:
+    resource: "@EvrinomaGalleryBundle/Resources/config/routes.yml"

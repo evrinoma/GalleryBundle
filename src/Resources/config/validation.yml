@@ -1,0 +1,3 @@
+imports:
+  - { resource: constraint/gallery.yml }
+  - { resource: constraint/file.yml }

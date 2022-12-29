@@ -1,0 +1,104 @@
+services:
+  Evrinoma\GalleryBundle\Controller\GalleryApiController:
+    alias: evrinoma.gallery.gallery.api.controller
+    public: true
+
+  evrinoma.gallery.gallery.api.controller:
+    class: Evrinoma\GalleryBundle\Controller\GalleryApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.gallery.gallery.facade'
+    autowire: true
+
+  evrinoma.gallery.gallery.facade:
+    class: Evrinoma\GalleryBundle\Facade\Gallery\Facade
+    arguments:
+      - '@evrinoma.gallery.gallery.command.manager'
+      - '@evrinoma.gallery.gallery.query.manager'
+      - '@evrinoma.gallery.adaptor'
+    autowire: true
+
+  Evrinoma\GalleryBundle\Facade\Gallery\FacadeInterface:
+    alias: evrinoma.gallery.gallery.facade
+
+  evrinoma.gallery.gallery.factory:
+    class: Evrinoma\GalleryBundle\Factory\Gallery\Factory
+    public: true
+    arguments:
+
+  evrinoma.gallery.gallery.orm.repository:
+    class: Evrinoma\GalleryBundle\Repository\Orm\Gallery\GalleryRepository
+    public: true
+    arguments:
+
+  evrinoma.gallery.gallery.command.manager:
+    class: Evrinoma\GalleryBundle\Manager\Gallery\CommandManager
+    arguments:
+      - '@evrinoma.gallery.gallery.validator'
+      - '@evrinoma.gallery.gallery.repository'
+      - '@evrinoma.gallery.gallery.factory'
+      - '@evrinoma.gallery.gallery.command.mediator'
+      - '@evrinoma.gallery.file.query.manager'
+
+  Evrinoma\GalleryBundle\Manager\Gallery\CommandManagerInterface:
+    alias: evrinoma.gallery.gallery.command.manager
+
+  evrinoma.gallery.gallery.query.manager:
+    class: Evrinoma\GalleryBundle\Manager\Gallery\QueryManager
+    arguments:
+      - '@evrinoma.gallery.gallery.repository'
+
+  Evrinoma\GalleryBundle\Manager\Gallery\QueryManagerInterface:
+    alias: evrinoma.gallery.gallery.query.manager
+    
+  evrinoma.gallery.gallery.validator:
+    class: Evrinoma\GalleryBundle\Validator\GalleryValidator
+    public: true
+    arguments:
+
+  Evrinoma\GalleryBundle\Validator\GalleryValidator:
+    alias: evrinoma.gallery.gallery.validator
+
+  evrinoma.gallery.gallery.query.orm.mediator:
+    class: Evrinoma\GalleryBundle\Mediator\Gallery\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\GalleryBundle\Mediator\Gallery\Orm\QueryMediator:
+    alias: evrinoma.gallery.gallery.query.orm.mediator
+
+  evrinoma.gallery.gallery.command.mediator:
+    class: Evrinoma\GalleryBundle\Mediator\Gallery\CommandMediator
+    public: true
+    arguments:
+      - '@evrinoma.gallery.gallery.system.file_system'
+
+  Evrinoma\GalleryBundle\Mediator\Gallery\CommandMediator:
+    alias: evrinoma.gallery.gallery.command.mediator
+
+  Evrinoma\GalleryBundle\Mediator\Gallery\CommandMediatorInterface:
+    alias: evrinoma.gallery.gallery.command.mediator
+
+  evrinoma.gallery.gallery.pre.validator:
+    class: Evrinoma\GalleryBundle\PreValidator\Gallery\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\GalleryBundle\PreValidator\Gallery\DtoPreValidator:
+    alias: evrinoma.gallery.gallery.pre.validator
+
+  Evrinoma\GalleryBundle\PreValidator\Gallery\DtoPreValidatorInterface:
+    alias: evrinoma.gallery.gallery.pre.validator
+
+  evrinoma.gallery.gallery.system.file_system:
+    class: Evrinoma\GalleryBundle\System\FileSystem
+    public: true
+    arguments:
+
+  Evrinoma\GalleryBundle\System\FileSystem:
+    alias: evrinoma.gallery.gallery.system.file_system
+
+  Evrinoma\GalleryBundle\System\FileSystemInterface:
+    alias: evrinoma.gallery.gallery.system.file_system

@@ -1,0 +1,71 @@
+{
+    "name": "evrinoma/gallery-bundle",
+    "description": "Gallery",
+    "keywords": [
+        "Gallery"
+    ],
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Nikolay Nikolaev",
+            "email": "evrinoma@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "evrinoma/dto-bundle": "dev-master",
+        "evrinoma/dto-common": "dev-master",
+        "evrinoma/utils-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Evrinoma\\GalleryBundle\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "/Tests/",
+            "!/Tests/Functional/Action"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.0",
+        "symfony/yaml": "^5.0",
+        "symfony/browser-kit": "^5.2",
+        "symfony/intl": "5.3.*",
+        "symfony/form": "5.2.*",
+        "symfony/validator": "5.2.*",
+        "phpunit/phpunit": "^9.5.2",
+        "friendsofphp/php-cs-fixer": "^3.4|^3.8",
+        "friendsofsymfony/rest-bundle": "^3",
+        "nelmio/api-doc-bundle": "4.9.0",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "2.6.4",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.10",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "jms/serializer-bundle": "^3.1",
+        "symfony/dotenv": "5.2.*",
+        "symfony/dependency-injection": "^5.4",
+        "evrinoma/test-utils-bundle": "dev-master"
+    },
+    "repositories": {
+        "dto": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/DtoBundle.git"
+        },
+        "dto-common": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/DtoCommon.git"
+        },
+        "test-utils": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/TestUtilsBundle.git"
+        },
+        "utils": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/UtilsBundle.git"
+        }
+    }
+}

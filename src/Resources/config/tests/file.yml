@@ -1,0 +1,9 @@
+services:
+  evrinoma.gallery.test.functional.action.file:
+    class: Evrinoma\GalleryBundle\Tests\Functional\Action\BaseFile
+    public: true
+    arguments:
+
+  Evrinoma\GalleryBundle\Tests\Functional\Action\BaseFile:
+    alias: evrinoma.gallery.test.functional.action.file
+    public: true

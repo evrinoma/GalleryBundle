@@ -1,0 +1,9 @@
+gallery_api:
+  resource: "@EvrinomaGalleryBundle/Controller/GalleryApiController.php"
+  type: annotation
+
+gallery_file_api:
+  resource: "@EvrinomaGalleryBundle/Controller/FileApiController.php"
+  type: annotation
+
+
