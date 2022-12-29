@@ -263,7 +263,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
      *             type="array",
      *             @OA\Items(
      *                 type="string",
-     *                 ref=@Model(type=Evrinoma\GalleryBundle\Form\Rest\File\FileChoiceFile::class, options={"data": "brief"})
+     *                 ref=@Model(type=Evrinoma\GalleryBundle\Form\Rest\File\FileChoiceType::class, options={"data": "brief"})
      *             ),
      *         ),
      *         style="form"
