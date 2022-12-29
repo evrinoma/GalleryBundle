@@ -92,7 +92,7 @@ services:
     alias: evrinoma.gallery.file.pre.validator
 
   evrinoma.gallery.file.form.rest.file:
-    class: Evrinoma\GalleryBundle\Form\Rest\File\FileChoiceFile
+    class: Evrinoma\GalleryBundle\Form\Rest\File\FileChoiceType
     arguments:
       - '@evrinoma.gallery.file.query.manager'
-    tags: { - name: form.file }
+    tags: { - name: form.type }

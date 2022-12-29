@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\GalleryBundle\Constraint\Property\Article;
+namespace Evrinoma\GalleryBundle\Constraint\Property\Gallery;
 
 use Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
