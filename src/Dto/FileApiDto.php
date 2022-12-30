@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Dto;
 
+use Evrinoma\DtoBundle\Annotation\Dto;
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
@@ -32,6 +33,47 @@ class FileApiDto extends AbstractDto implements FileApiDtoInterface
     use IdTrait;
     use ImageTrait;
     use PositionTrait;
+
+    /**
+     * @Dto(class="Evrinoma\GalleryBundle\Dto\GalleryApiDto", generator="genRequestGalleryApiDto")
+     */
+    private ?GalleryApiDtoInterface $galleryApiDto = null;
+
+    /**
+     * @param GalleryApiDtoInterface $galleryApiDto
+     *
+     * @return DtoInterface
+     */
+    public function setGalleryApiDto(GalleryApiDtoInterface $galleryApiDto): DtoInterface
+    {
+        $this->galleryApiDto = $galleryApiDto;
+
+        return $this;
+    }
+
+    public function hasGalleryApiDto(): bool
+    {
+        return null !== $this->galleryApiDto;
+    }
+
+    public function getGalleryApiDto(): GalleryApiDtoInterface
+    {
+        return $this->galleryApiDto;
+    }
+
+    public function genRequestGalleryApiDto(?Request $request): ?\Generator
+    {
+        if ($request) {
+            $type = $request->get(GalleryApiDtoInterface::GALLERY);
+            if ($type) {
+                $newRequest = $this->getCloneRequest();
+                $type[DtoInterface::DTO_CLASS] = GalleryApiDto::class;
+                $newRequest->request->add($type);
+
+                yield $newRequest;
+            }
+        }
+    }
 
     public function toDto(Request $request): DtoInterface
     {

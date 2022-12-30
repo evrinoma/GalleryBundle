@@ -20,7 +20,6 @@ use Evrinoma\GalleryBundle\Exception\Gallery\GalleryCannotBeSavedException;
 use Evrinoma\GalleryBundle\Exception\Gallery\GalleryInvalidException;
 use Evrinoma\GalleryBundle\Exception\Gallery\GalleryNotFoundException;
 use Evrinoma\GalleryBundle\Factory\Gallery\FactoryInterface;
-use Evrinoma\GalleryBundle\Manager\File\QueryManagerInterface as FileQueryManagerInterface;
 use Evrinoma\GalleryBundle\Mediator\Gallery\CommandMediatorInterface;
 use Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface;
 use Evrinoma\GalleryBundle\Repository\Gallery\GalleryRepositoryInterface;
@@ -32,15 +31,13 @@ final class CommandManager implements CommandManagerInterface
     private ValidatorInterface            $validator;
     private FactoryInterface           $factory;
     private CommandMediatorInterface      $mediator;
-    private FileQueryManagerInterface $typeQueryManager;
 
-    public function __construct(ValidatorInterface $validator, GalleryRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator, FileQueryManagerInterface $typeQueryManager)
+    public function __construct(ValidatorInterface $validator, GalleryRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator)
     {
         $this->validator = $validator;
         $this->repository = $repository;
         $this->factory = $factory;
         $this->mediator = $mediator;
-        $this->typeQueryManager = $typeQueryManager;
     }
 
     /**
@@ -55,12 +52,6 @@ final class CommandManager implements CommandManagerInterface
     public function post(GalleryApiDtoInterface $dto): GalleryInterface
     {
         $gallery = $this->factory->create($dto);
-
-        try {
-            $gallery->setFile($this->typeQueryManager->proxy($dto->getFileApiDto()));
-        } catch (\Exception $e) {
-            throw new GalleryCannotBeCreatedException($e->getMessage());
-        }
 
         $this->mediator->onCreate($dto, $gallery);
 
@@ -92,12 +83,6 @@ final class CommandManager implements CommandManagerInterface
             $gallery = $this->repository->find($dto->idToString());
         } catch (GalleryNotFoundException $e) {
             throw $e;
-        }
-
-        try {
-            $gallery->setFile($this->typeQueryManager->proxy($dto->getFileApiDto()));
-        } catch (\Exception $e) {
-            throw new GalleryCannotBeSavedException($e->getMessage());
         }
 
         $this->mediator->onUpdate($dto, $gallery);

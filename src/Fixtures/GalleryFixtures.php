@@ -31,7 +31,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2008-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 1,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'kzkt',
@@ -41,7 +40,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2015-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 2,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'c2m',
@@ -51,7 +49,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2020-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 4,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'kzkt2',
@@ -61,7 +58,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2015-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 5,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'nvr',
@@ -71,7 +67,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2010-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 6,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'nvr2',
@@ -81,7 +76,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2010-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 5,
         ],
         [
             GalleryApiDtoInterface::TITLE => 'nvr3',
@@ -91,7 +85,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2011-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            GalleryApiDtoInterface::FILE => 4,
         ],
     ];
 
@@ -107,7 +100,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
     protected function create(ObjectManager $manager): self
     {
         $short = self::getReferenceName();
-        $shortType = FileFixtures::getReferenceName();
         $i = 0;
 
         foreach (static::$data as $record) {
@@ -121,7 +113,6 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
                 ->setStart(new \DateTimeImmutable($record[GalleryApiDtoInterface::START]))
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setImage($record[GalleryApiDtoInterface::IMAGE])
-                ->setFile($this->getReference($shortType.$record[GalleryApiDtoInterface::FILE]))
             ;
 
             $this->addReference($short.$i, $entity);
@@ -135,12 +126,12 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::GALLERY_FIXTURES,
+            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::FILE_FIXTURES,
         ];
     }
 
     public function getOrder()
     {
-        return 100;
+        return 0;
     }
 }

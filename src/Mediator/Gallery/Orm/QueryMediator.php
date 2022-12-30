@@ -36,17 +36,7 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
     public function createQuery(DtoInterface $dto, QueryBuilderInterface $builder): void
     {
         $alias = $this->alias();
-
         /** @var $dto GalleryApiDtoInterface */
-        if ($dto->hasFileApiDto() && $dto->getFileApiDto()->hasBrief()) {
-            $aliasFile = AliasInterface::FILE;
-            $builder
-                ->leftJoin($alias.'.type', $aliasFile)
-                ->addSelect($aliasFile)
-                ->andWhere($aliasFile.'.brief like :briefFile')
-                ->setParameter('briefFile', '%'.$dto->getFileApiDto()->getBrief().'%');
-        }
-
         if ($dto->hasId()) {
             $builder
                 ->andWhere($alias.'.id = :id')

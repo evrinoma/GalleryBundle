@@ -15,6 +15,7 @@ namespace Evrinoma\GalleryBundle\Tests\Functional\Action;
 
 use Evrinoma\GalleryBundle\Dto\FileApiDto;
 use Evrinoma\GalleryBundle\Dto\FileApiDtoInterface;
+use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
 use Evrinoma\GalleryBundle\Tests\Functional\Helper\BaseFileTestTrait;
 use Evrinoma\GalleryBundle\Tests\Functional\ValueObject\File\Active;
 use Evrinoma\GalleryBundle\Tests\Functional\ValueObject\File\Brief;
@@ -60,6 +61,7 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
             FileApiDtoInterface::POSITION => Position::value(),
             FileApiDtoInterface::ACTIVE => Active::value(),
             FileApiDtoInterface::IMAGE => Image::default(),
+            GalleryApiDtoInterface::GALLERY => BaseGallery::defaultData(),
         ];
     }
 

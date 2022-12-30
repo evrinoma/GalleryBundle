@@ -24,4 +24,8 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 interface FileApiDtoInterface extends DtoInterface, IdInterface, BriefInterface, DescriptionInterface, ActiveInterface, ImageInterface, PositionInterface
 {
     public const FILE = 'file';
+
+    public function hasGalleryApiDto(): bool;
+
+    public function getGalleryApiDto(): GalleryApiDtoInterface;
 }

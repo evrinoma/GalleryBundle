@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Dto;
 
-use Evrinoma\DtoBundle\Annotation\Dto;
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
@@ -37,50 +36,6 @@ class GalleryApiDto extends AbstractDto implements GalleryApiDtoInterface
     use PreviewTrait;
     use StartTrait;
     use TitleTrait;
-
-    /**
-     * @Dto(class="Evrinoma\GalleryBundle\Dto\FileApiDto", generator="genRequestFileApiDto")
-     */
-    private ?FileApiDtoInterface $fileApiDto = null;
-
-    /**
-     * @param FileApiDto $typeApiDto
-     *
-     * @return DtoInterface
-     */
-    public function setFileApiDto(FileApiDtoInterface $typeApiDto): DtoInterface
-    {
-        $this->fileApiDto = $typeApiDto;
-
-        return $this;
-    }
-
-    public function hasFileApiDto(): bool
-    {
-        return null !== $this->fileApiDto;
-    }
-
-    public function getFileApiDto(): FileApiDtoInterface
-    {
-        return $this->fileApiDto;
-    }
-
-    public function genRequestFileApiDto(?Request $request): ?\Generator
-    {
-        if ($request) {
-            $type = $request->get(FileApiDtoInterface::FILE);
-            if ($type) {
-                $newRequest = $this->getCloneRequest();
-                $type[DtoInterface::DTO_CLASS] = FileApiDto::class;
-                $newRequest->request->add($type);
-                if ($request->files->has(FileApiDto::class)) {
-                    $newRequest->files->add([FileApiDto::class => $request->files->get(FileApiDto::class)]);
-                }
-
-                yield $newRequest;
-            }
-        }
-    }
 
     public function toDto(Request $request): DtoInterface
     {

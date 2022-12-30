@@ -25,9 +25,5 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
 
 interface GalleryApiDtoInterface extends DtoInterface, IdInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
 {
-    public const FILE = FileApiDtoInterface::FILE;
-
-    public function hasFileApiDto(): bool;
-
-    public function getFileApiDto(): FileApiDtoInterface;
+    public const GALLERY = 'gallery';
 }

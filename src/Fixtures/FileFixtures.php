@@ -17,6 +17,7 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Evrinoma\GalleryBundle\Dto\FileApiDtoInterface;
+use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
 use Evrinoma\GalleryBundle\Entity\File\BaseFile;
 use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 
@@ -29,6 +30,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'a',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 1,
+            GalleryApiDtoInterface::GALLERY => 0,
         ],
         [
             FileApiDtoInterface::BRIEF => 'kzkt',
@@ -36,6 +38,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'a',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 2,
+            GalleryApiDtoInterface::GALLERY => 1,
         ],
         [
             FileApiDtoInterface::BRIEF => 'c2m',
@@ -43,6 +46,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'a',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 3,
+            GalleryApiDtoInterface::GALLERY => 0,
         ],
         [
             FileApiDtoInterface::BRIEF => 'kzkt2',
@@ -50,6 +54,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'd',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 4,
+            GalleryApiDtoInterface::GALLERY => 1,
             ],
         [
             FileApiDtoInterface::BRIEF => 'nvr',
@@ -57,6 +62,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'b',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 5,
+            GalleryApiDtoInterface::GALLERY => 0,
         ],
         [
             FileApiDtoInterface::BRIEF => 'nvr2',
@@ -64,6 +70,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'd',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 6,
+            GalleryApiDtoInterface::GALLERY => 1,
             ],
         [
             FileApiDtoInterface::BRIEF => 'nvr3',
@@ -71,6 +78,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::ACTIVE => 'd',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 7,
+            GalleryApiDtoInterface::GALLERY => 2,
         ],
     ];
 
@@ -86,11 +94,13 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
     protected function create(ObjectManager $manager): self
     {
         $short = self::getReferenceName();
+        $shortGallery = GalleryFixtures::getReferenceName();
         $i = 0;
 
         foreach (static::$data as $record) {
             $entity = new static::$class();
             $entity
+                ->setGallery($this->getReference($shortGallery.$record[GalleryApiDtoInterface::GALLERY]))
                 ->setActive($record[FileApiDtoInterface::ACTIVE])
                 ->setBrief($record[FileApiDtoInterface::BRIEF])
                 ->setPosition($record[FileApiDtoInterface::POSITION])
@@ -109,12 +119,12 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::FILE_FIXTURES, FixtureInterface::GALLERY_FIXTURES,
+            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::FILE_FIXTURES,
         ];
     }
 
     public function getOrder()
     {
-        return 0;
+        return 100;
     }
 }

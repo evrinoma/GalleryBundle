@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Model\Gallery;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
@@ -48,27 +50,37 @@ abstract class AbstractGallery implements GalleryInterface
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evrinoma\GalleryBundle\Model\File\FileInterface")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     * @var ArrayCollection|FileInterface[]
+     *
+     * @ORM\ManyToMany(targetEntity="Evrinoma\GalleryBundle\Model\File\FileInterface")
+     * @ORM\JoinTable(
+     *     joinColumns={@ORM\JoinColumn(name="gallery_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")}
+     * )
      */
-    protected FileInterface $type;
+    protected $file;
 
-    /**
-     * @return FileInterface
-     */
-    public function getFile(): FileInterface
+    public function __construct()
     {
-        return $this->type;
+        $this->file = new ArrayCollection();
     }
 
     /**
-     * @param FileInterface $type
+     * @return Collection|FileInterface[]
+     */
+    public function getFile(): Collection
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param Collection|FileInterface[] $file
      *
      *  @return GalleryInterface
      */
-    public function setFile(FileInterface $type): GalleryInterface
+    public function setFile($file): GalleryInterface
     {
-        $this->type = $type;
+        $this->file = $file;
 
         return $this;
     }

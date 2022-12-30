@@ -20,6 +20,7 @@ use Evrinoma\GalleryBundle\Exception\File\FileCannotBeSavedException;
 use Evrinoma\GalleryBundle\Exception\File\FileInvalidException;
 use Evrinoma\GalleryBundle\Exception\File\FileNotFoundException;
 use Evrinoma\GalleryBundle\Factory\File\FactoryInterface;
+use Evrinoma\GalleryBundle\Manager\Gallery\QueryManagerInterface as GalleryQueryManagerInterface;
 use Evrinoma\GalleryBundle\Mediator\File\CommandMediatorInterface;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
 use Evrinoma\GalleryBundle\Repository\File\FileRepositoryInterface;
@@ -31,19 +32,15 @@ final class CommandManager implements CommandManagerInterface
     private ValidatorInterface            $validator;
     private FactoryInterface           $factory;
     private CommandMediatorInterface      $mediator;
+    private GalleryQueryManagerInterface $galleryQueryManager;
 
-    /**
-     * @param ValidatorInterface       $validator
-     * @param FileRepositoryInterface  $repository
-     * @param FactoryInterface         $factory
-     * @param CommandMediatorInterface $mediator
-     */
-    public function __construct(ValidatorInterface $validator, FileRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator)
+    public function __construct(ValidatorInterface $validator, FileRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator, GalleryQueryManagerInterface $galleryQueryManager)
     {
         $this->validator = $validator;
         $this->repository = $repository;
         $this->factory = $factory;
         $this->mediator = $mediator;
+        $this->galleryQueryManager = $galleryQueryManager;
     }
 
     /**
@@ -57,11 +54,17 @@ final class CommandManager implements CommandManagerInterface
      */
     public function post(FileApiDtoInterface $dto): FileInterface
     {
-        $gallery = $this->factory->create($dto);
+        $file = $this->factory->create($dto);
 
-        $this->mediator->onCreate($dto, $gallery);
+        $this->mediator->onCreate($dto, $file);
 
-        $errors = $this->validator->validate($gallery);
+        try {
+            $file->setGallery($this->galleryQueryManager->proxy($dto->getGalleryApiDto()));
+        } catch (\Exception $e) {
+            throw new FileCannotBeCreatedException($e->getMessage());
+        }
+
+        $errors = $this->validator->validate($file);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -69,9 +72,9 @@ final class CommandManager implements CommandManagerInterface
             throw new FileInvalidException($errorsString);
         }
 
-        $this->repository->save($gallery);
+        $this->repository->save($file);
 
-        return $gallery;
+        return $file;
     }
 
     /**
@@ -86,14 +89,20 @@ final class CommandManager implements CommandManagerInterface
     public function put(FileApiDtoInterface $dto): FileInterface
     {
         try {
-            $gallery = $this->repository->find($dto->idToString());
+            $file = $this->repository->find($dto->idToString());
         } catch (FileNotFoundException $e) {
             throw $e;
         }
 
-        $this->mediator->onUpdate($dto, $gallery);
+        try {
+            $file->setGallery($this->galleryQueryManager->proxy($dto->getGalleryApiDto()));
+        } catch (\Exception $e) {
+            throw new FileCannotBeSavedException($e->getMessage());
+        }
 
-        $errors = $this->validator->validate($gallery);
+        $this->mediator->onUpdate($dto, $file);
+
+        $errors = $this->validator->validate($file);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -101,9 +110,9 @@ final class CommandManager implements CommandManagerInterface
             throw new FileInvalidException($errorsString);
         }
 
-        $this->repository->save($gallery);
+        $this->repository->save($file);
 
-        return $gallery;
+        return $file;
     }
 
     /**
@@ -115,13 +124,13 @@ final class CommandManager implements CommandManagerInterface
     public function delete(FileApiDtoInterface $dto): void
     {
         try {
-            $gallery = $this->repository->find($dto->idToString());
+            $file = $this->repository->find($dto->idToString());
         } catch (FileNotFoundException $e) {
             throw $e;
         }
-        $this->mediator->onDelete($dto, $gallery);
+        $this->mediator->onDelete($dto, $file);
         try {
-            $this->repository->remove($gallery);
+            $this->repository->remove($file);
         } catch (FileCannotBeRemovedException $e) {
             throw $e;
         }

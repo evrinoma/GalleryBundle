@@ -61,5 +61,16 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
                 ->andWhere($alias.'.active = :active')
                 ->setParameter('active', $dto->getActive());
         }
+
+        if ($dto->hasGalleryApiDto()) {
+            $aliasGallery = AliasInterface::GALLERY;
+            $builder
+                ->leftJoin($alias.'.gallery', $aliasGallery)
+                ->addSelect($aliasGallery);
+            if ($dto->getGalleryApiDto()->hasId()) {
+                $builder->andWhere($aliasGallery.'.id = :idGallery')
+                    ->setParameter('idGallery', $dto->getGalleryApiDto()->getId());
+            }
+        }
     }
 }

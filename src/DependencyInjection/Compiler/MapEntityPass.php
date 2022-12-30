@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\DependencyInjection\Compiler;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\Mapping;
 use Evrinoma\GalleryBundle\DependencyInjection\EvrinomaGalleryExtension;
 use Evrinoma\GalleryBundle\Entity\File\BaseFile;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
@@ -37,20 +39,29 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
 
             $this->cleanMetadata($driver, [EvrinomaGalleryExtension::ENTITY]);
 
+            $entityFile = BaseFile::class;
+
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/File', '%s/Entity/File');
 
-            $this->addResolveTargetEntity(
-                [
-                    BaseFile::class => [FileInterface::class => []],
-                ],
-                false
-            );
+            $this->addResolveTargetEntity([$entityFile => [FileInterface::class => []]], false);
 
             $entityGallery = $container->getParameter('evrinoma.gallery.entity');
             if (str_contains($entityGallery, EvrinomaGalleryExtension::ENTITY)) {
                 $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Gallery', '%s/Entity/Gallery');
             }
             $this->addResolveTargetEntity([$entityGallery => [GalleryInterface::class => []]], false);
+
+            $mapping = $this->getMapping($entityFile);
+            $this->addResolveTargetEntity([$entityFile => [FileInterface::class => ['inherited' => true, 'joinTable' => $mapping]]], false);
         }
+    }
+
+    private function getMapping(string $className): array
+    {
+        $annotationReader = new AnnotationReader();
+        $reflectionClass = new \ReflectionClass($className);
+        $joinTableAttribute = $annotationReader->getClassAnnotation($reflectionClass, Mapping\Table::class);
+
+        return ($joinTableAttribute) ? ['name' => $joinTableAttribute->name] : [];
     }
 }

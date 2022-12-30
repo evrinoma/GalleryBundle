@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Model\File;
 
+use Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\BriefInterface;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtInterface;
@@ -21,4 +22,11 @@ use Evrinoma\UtilsBundle\Entity\IdInterface;
 
 interface FileInterface extends ActiveInterface, IdInterface, DescriptionInterface, BriefInterface, CreateUpdateAtInterface
 {
+    public function resetGallery(): FileInterface;
+
+    public function hasGallery(): bool;
+
+    public function getGallery(): GalleryInterface;
+
+    public function setGallery(GalleryInterface $gallery): FileInterface;
 }

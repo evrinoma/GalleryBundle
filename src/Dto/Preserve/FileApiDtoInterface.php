@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Dto\Preserve;
 
+use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\BriefInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
@@ -22,4 +23,10 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 
 interface FileApiDtoInterface extends IdInterface, BriefInterface, DescriptionInterface, ActiveInterface, ImageInterface, PositionInterface
 {
+    /**
+     * @param GalleryApiDtoInterface $galleryApiDto
+     *
+     * @return DtoInterface
+     */
+    public function setGalleryApiDto(GalleryApiDtoInterface $galleryApiDto): DtoInterface;
 }

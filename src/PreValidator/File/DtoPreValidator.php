@@ -23,6 +23,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     public function onPost(DtoInterface $dto): void
     {
         $this
+            ->checkGallery($dto)
             ->checkImage($dto)
             ->checkDescriptiony($dto)
             ->checkPosition($dto)
@@ -32,6 +33,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     public function onPut(DtoInterface $dto): void
     {
         $this
+            ->checkGallery($dto)
             ->checkImage($dto)
             ->checkId($dto)
             ->checkDescriptiony($dto)
@@ -44,6 +46,16 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this
             ->checkId($dto);
+    }
+
+    private function checkGallery(DtoInterface $dto): self
+    {
+        /** @var FileApiDtoInterface $dto */
+        if (!$dto->hasGalleryApiDto()) {
+            throw new FileInvalidException('The Dto has\'t gallery');
+        }
+
+        return $this;
     }
 
     private function checkActive(DtoInterface $dto): self

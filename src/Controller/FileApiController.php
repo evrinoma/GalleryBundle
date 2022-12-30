@@ -71,6 +71,10 @@ final class FileApiController extends AbstractWrappedApiController implements Ap
      *                         @OA\Property(property="position", type="int"),
      *                         @OA\Property(property="brief", type="string"),
      *                         @OA\Property(property="image", type="string"),
+     *                         @OA\Property(property="gallery", type="object",
+     *                             @OA\Property(property="class", type="string", default="Evrinoma\GalleryBundle\Dto\GalleryApiDto"),
+     *                             @OA\Property(property="id", type="string", default="1"),
+     *                         ),
      *                         @OA\Property(property="Evrinoma\GalleryBundle\Dto\FileApiDto[image]", type="string",  format="binary")
      *                     )
      *                 }
@@ -121,6 +125,10 @@ final class FileApiController extends AbstractWrappedApiController implements Ap
      *                         @OA\Property(property="id", type="string"),
      *                         @OA\Property(property="active", type="string"),
      *                         @OA\Property(property="image", type="string"),
+     *                         @OA\Property(property="gallery", type="object",
+     *                             @OA\Property(property="class", type="string", default="Evrinoma\GalleryBundle\Dto\GalleryApiDto"),
+     *                             @OA\Property(property="id", type="string", default="1"),
+     *                         ),
      *                         @OA\Property(property="Evrinoma\GalleryBundle\Dto\FileApiDto[image]", type="string",  format="binary")
      *                     )
      *                 }

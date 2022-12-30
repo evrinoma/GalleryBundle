@@ -40,7 +40,6 @@ services:
       - '@evrinoma.gallery.gallery.repository'
       - '@evrinoma.gallery.gallery.factory'
       - '@evrinoma.gallery.gallery.command.mediator'
-      - '@evrinoma.gallery.file.query.manager'
 
   Evrinoma\GalleryBundle\Manager\Gallery\CommandManagerInterface:
     alias: evrinoma.gallery.gallery.command.manager

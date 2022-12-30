@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Evrinoma\GalleryBundle\Model\File;
 
 use Doctrine\ORM\Mapping as ORM;
+use Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\BriefTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
@@ -35,4 +36,45 @@ abstract class AbstractFile implements FileInterface
     use IdTrait;
     use ImageTrait;
     use PositionTrait;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface")
+     * @ORM\JoinColumn(name="gallery_id", referencedColumnName="id")
+     */
+    protected ?GalleryInterface $gallery = null;
+
+    /**
+     * @return GalleryInterface
+     */
+    public function getGallery(): GalleryInterface
+    {
+        return $this->gallery;
+    }
+
+    public function resetGallery(): FileInterface
+    {
+        $this->gallery = null;
+
+        return $this;
+    }
+
+    /**
+     * @param GalleryInterface $gallery
+     *
+     * @return FileInterface
+     */
+    public function setGallery(GalleryInterface $gallery): FileInterface
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGallery(): bool
+    {
+        return null !== $this->gallery;
+    }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Model\Gallery;
 
+use Doctrine\Common\Collections\Collection;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtInterface;
@@ -26,7 +27,15 @@ use Evrinoma\UtilsBundle\Entity\TitleInterface;
 
 interface GalleryInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
 {
-    public function setFile(FileInterface $type): GalleryInterface;
+    /**
+     * @param Collection|FileInterface[] $file
+     *
+     *  @return GalleryInterface
+     */
+    public function setFile($file): GalleryInterface;
 
-    public function getFile(): FileInterface;
+    /**
+     * @return Collection|FileInterface[]
+     */
+    public function getFile(): Collection;
 }

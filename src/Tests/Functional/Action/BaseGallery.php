@@ -56,12 +56,11 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
 
         return [
             GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
-            GalleryApiDtoInterface::ID => Id::default(),
+            GalleryApiDtoInterface::ID => Id::value(),
             GalleryApiDtoInterface::TITLE => Title::default(),
             GalleryApiDtoInterface::POSITION => Position::value(),
             GalleryApiDtoInterface::ACTIVE => Active::value(),
             GalleryApiDtoInterface::DESCRIPTION => Description::default(),
-            GalleryApiDtoInterface::FILE => BaseFile::defaultData(),
             GalleryApiDtoInterface::START => Start::default(),
             GalleryApiDtoInterface::IMAGE => Image::default(),
             GalleryApiDtoInterface::PREVIEW => Preview::default(),
