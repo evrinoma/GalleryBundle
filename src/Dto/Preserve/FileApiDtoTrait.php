@@ -20,6 +20,7 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
+use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
 
 trait FileApiDtoTrait
 {

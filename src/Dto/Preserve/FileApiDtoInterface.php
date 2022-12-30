@@ -20,6 +20,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
+use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
 
 interface FileApiDtoInterface extends IdInterface, BriefInterface, DescriptionInterface, ActiveInterface, ImageInterface, PositionInterface
 {
