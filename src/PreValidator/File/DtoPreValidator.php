@@ -25,7 +25,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         $this
             ->checkGallery($dto)
             ->checkImage($dto)
-            ->checkDescriptiony($dto)
+            ->checkDescription($dto)
             ->checkPosition($dto)
             ->checkBrief($dto);
     }
@@ -36,7 +36,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkGallery($dto)
             ->checkImage($dto)
             ->checkId($dto)
-            ->checkDescriptiony($dto)
+            ->checkDescription($dto)
             ->checkPosition($dto)
             ->checkBrief($dto)
             ->checkActive($dto);
@@ -78,7 +78,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkDescriptiony(DtoInterface $dto): self
+    private function checkDescription(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasDescription()) {
