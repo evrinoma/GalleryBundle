@@ -27,17 +27,17 @@ trait FileRepositoryTrait
     private QueryMediatorInterface $mediator;
 
     /**
-     * @param FileInterface $type
+     * @param FileInterface $file
      *
      * @return bool
      *
      * @throws FileCannotBeSavedException
      * @throws ORMException
      */
-    public function save(FileInterface $type): bool
+    public function save(FileInterface $file): bool
     {
         try {
-            $this->persistWrapped($type);
+            $this->persistWrapped($file);
         } catch (ORMInvalidArgumentException $e) {
             throw new FileCannotBeSavedException($e->getMessage());
         }
@@ -46,11 +46,11 @@ trait FileRepositoryTrait
     }
 
     /**
-     * @param FileInterface $type
+     * @param FileInterface $file
      *
      * @return bool
      */
-    public function remove(FileInterface $type): bool
+    public function remove(FileInterface $file): bool
     {
         return true;
     }
@@ -68,13 +68,13 @@ trait FileRepositoryTrait
 
         $this->mediator->createQuery($dto, $builder);
 
-        $types = $this->mediator->getResult($dto, $builder);
+        $files = $this->mediator->getResult($dto, $builder);
 
-        if (0 === \count($types)) {
-            throw new FileNotFoundException('Cannot find type by findByCriteria');
+        if (0 === \count($files)) {
+            throw new FileNotFoundException('Cannot find file by findByCriteria');
         }
 
-        return $types;
+        return $files;
     }
 
     /**
@@ -88,14 +88,14 @@ trait FileRepositoryTrait
      */
     public function find($id, $lockMode = null, $lockVersion = null): FileInterface
     {
-        /** @var FileInterface $type */
-        $type = $this->findWrapped($id);
+        /** @var FileInterface $file */
+        $file = $this->findWrapped($id);
 
-        if (null === $type) {
-            throw new FileNotFoundException("Cannot find type with id $id");
+        if (null === $file) {
+            throw new FileNotFoundException("Cannot find file with id $id");
         }
 
-        return $type;
+        return $file;
     }
 
     /**
@@ -108,12 +108,12 @@ trait FileRepositoryTrait
      */
     public function proxy(string $id): FileInterface
     {
-        $type = $this->referenceWrapped($id);
+        $file = $this->referenceWrapped($id);
 
-        if (!$this->containsWrapped($type)) {
+        if (!$this->containsWrapped($file)) {
             throw new FileProxyException("Proxy doesn't exist with $id");
         }
 
-        return $type;
+        return $file;
     }
 }

@@ -74,6 +74,7 @@ services:
     public: true
     arguments:
       - '@evrinoma.gallery.gallery.system.file_system'
+      - '@evrinoma.gallery.gallery.query.manager'
 
   Evrinoma\GalleryBundle\Mediator\File\CommandMediator:
     alias: evrinoma.gallery.file.command.mediator

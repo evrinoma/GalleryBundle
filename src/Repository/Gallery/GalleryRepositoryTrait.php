@@ -68,13 +68,13 @@ trait GalleryRepositoryTrait
 
         $this->mediator->createQuery($dto, $builder);
 
-        $gallerys = $this->mediator->getResult($dto, $builder);
+        $galleries = $this->mediator->getResult($dto, $builder);
 
-        if (0 === \count($gallerys)) {
+        if (0 === \count($galleries)) {
             throw new GalleryNotFoundException('Cannot find gallery by findByCriteria');
         }
 
-        return $gallerys;
+        return $galleries;
     }
 
     /**

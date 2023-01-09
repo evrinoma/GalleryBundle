@@ -20,7 +20,6 @@ use Evrinoma\GalleryBundle\Exception\File\FileCannotBeSavedException;
 use Evrinoma\GalleryBundle\Exception\File\FileInvalidException;
 use Evrinoma\GalleryBundle\Exception\File\FileNotFoundException;
 use Evrinoma\GalleryBundle\Factory\File\FactoryInterface;
-use Evrinoma\GalleryBundle\Manager\Gallery\QueryManagerInterface as GalleryQueryManagerInterface;
 use Evrinoma\GalleryBundle\Mediator\File\CommandMediatorInterface;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
 use Evrinoma\GalleryBundle\Repository\File\FileRepositoryInterface;
@@ -32,15 +31,13 @@ final class CommandManager implements CommandManagerInterface
     private ValidatorInterface            $validator;
     private FactoryInterface           $factory;
     private CommandMediatorInterface      $mediator;
-    private GalleryQueryManagerInterface $galleryQueryManager;
 
-    public function __construct(ValidatorInterface $validator, FileRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator, GalleryQueryManagerInterface $galleryQueryManager)
+    public function __construct(ValidatorInterface $validator, FileRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator)
     {
         $this->validator = $validator;
         $this->repository = $repository;
         $this->factory = $factory;
         $this->mediator = $mediator;
-        $this->galleryQueryManager = $galleryQueryManager;
     }
 
     /**
@@ -57,12 +54,6 @@ final class CommandManager implements CommandManagerInterface
         $file = $this->factory->create($dto);
 
         $this->mediator->onCreate($dto, $file);
-
-        try {
-            $file->setGallery($this->galleryQueryManager->proxy($dto->getGalleryApiDto()));
-        } catch (\Exception $e) {
-            throw new FileCannotBeCreatedException($e->getMessage());
-        }
 
         $errors = $this->validator->validate($file);
 
@@ -92,12 +83,6 @@ final class CommandManager implements CommandManagerInterface
             $file = $this->repository->find($dto->idToString());
         } catch (FileNotFoundException $e) {
             throw $e;
-        }
-
-        try {
-            $file->setGallery($this->galleryQueryManager->proxy($dto->getGalleryApiDto()));
-        } catch (\Exception $e) {
-            throw new FileCannotBeSavedException($e->getMessage());
         }
 
         $this->mediator->onUpdate($dto, $file);
