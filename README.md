@@ -1,3 +1,20 @@
+# Installation
+
+Добавить в kernel
+
+    Evrinoma\GalleryBundle\EvrinomaGalleryBundle::class => ['all' => true],
+
+Добавить в routes
+
+    gallery:
+        resource: "@EvrinomaGalleryBundle/Resources/config/routes.yml"
+
+Добавить в composer
+
+    composer config repositories.dto vcs https://github.com/evrinoma/DtoBundle.git
+    composer config repositories.dto-common vcs https://github.com/evrinoma/DtoCommonBundle.git
+    composer config repositories.utils vcs https://github.com/evrinoma/UtilsBundle.git
+
 # Configuration
 
 преопределение штатного класса сущности
