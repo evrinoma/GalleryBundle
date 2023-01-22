@@ -20,12 +20,9 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Immutable\GalleryApiDtoInterface;
 
-interface FileApiDtoInterface extends DtoInterface, IdInterface, BriefInterface, DescriptionInterface, ActiveInterface, ImageInterface, PositionInterface
+interface FileApiDtoInterface extends DtoInterface, IdInterface, BriefInterface, DescriptionInterface, ActiveInterface, ImageInterface, PositionInterface, GalleryApiDtoInterface
 {
     public const FILE = 'file';
-
-    public function hasGalleryApiDto(): bool;
-
-    public function getGalleryApiDto(): GalleryApiDtoInterface;
 }

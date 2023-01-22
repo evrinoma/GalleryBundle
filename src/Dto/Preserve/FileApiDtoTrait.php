@@ -13,31 +13,21 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Dto\Preserve;
 
-use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\BriefTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
-use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Preserve\GalleryApiDtoTrait;
 
 trait FileApiDtoTrait
 {
     use ActiveTrait;
     use BriefTrait;
     use DescriptionTrait;
+    use GalleryApiDtoTrait;
     use IdTrait;
     use ImageTrait;
     use PositionTrait;
-
-    /**
-     * @param GalleryApiDtoInterface $galleryApiDto
-     *
-     * @return DtoInterface
-     */
-    public function setGalleryApiDto(GalleryApiDtoInterface $galleryApiDto): DtoInterface
-    {
-        return parent::setGalleryApiDto($galleryApiDto);
-    }
 }
