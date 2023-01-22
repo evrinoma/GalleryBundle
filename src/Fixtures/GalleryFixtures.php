@@ -115,7 +115,7 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
                 ->setImage($record[GalleryApiDtoInterface::IMAGE])
             ;
 
-            $this->expandEntity($entity);
+            $this->expandEntity($entity, $record);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
