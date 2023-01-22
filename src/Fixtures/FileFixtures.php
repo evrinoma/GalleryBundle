@@ -97,8 +97,8 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
         $shortGallery = GalleryFixtures::getReferenceName();
         $i = 0;
 
-        foreach (static::$data as $record) {
-            $entity = new static::$class();
+        foreach ($this->getData() as $record) {
+            $entity = $this->getEntity();
             $entity
                 ->setGallery($this->getReference($shortGallery.$record[GalleryApiDtoInterface::GALLERY]))
                 ->setActive($record[FileApiDtoInterface::ACTIVE])
@@ -106,7 +106,10 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
                 ->setPosition($record[FileApiDtoInterface::POSITION])
                 ->setImage($record[FileApiDtoInterface::IMAGE])
                 ->setCreatedAt(new \DateTimeImmutable())
-                ->setDescription($record[FileApiDtoInterface::DESCRIPTION]);
+                ->setDescription($record[FileApiDtoInterface::DESCRIPTION])
+            ;
+
+            $this->expandEntity($entity);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
