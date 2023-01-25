@@ -25,7 +25,7 @@
                  недостающие значения можно разрешить только на уровне Mediator
         entity: App\Gallery\Entity\Gallery сущность
         constraints: Вкл/выкл проверки полей сущности по умолчанию 
-        dto_class: App\Gallery\Dto\GalleryDto класс dto с которым работает сущность
+        dto: App\Gallery\Dto\GalleryDto класс dto с которым работает сущность
         decorates:
           command - декоратор mediator команд галлереи
           query - декоратор mediator запросов галлереи
