@@ -20,16 +20,16 @@ use Evrinoma\GalleryBundle\Model\File\FileInterface;
 interface FileCommandRepositoryInterface
 {
     /**
-     * @param FileInterface $type
+     * @param FileInterface $file
      *
      * @return bool
      *
      * @throws FileCannotBeSavedException
      */
-    public function save(FileInterface $type): bool;
+    public function save(FileInterface $file): bool;
 
     /**
-     * @param FileInterface $type
+     * @param FileInterface $file
      *
      * @return bool
      *
