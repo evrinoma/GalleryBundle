@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Evrinoma\GalleryBundle\Form\Rest\File;
 
 use Doctrine\DBAL\Exception\TableNotFoundException;
-use Evrinoma\GalleryBundle\Dto\FileApiDto;
 use Evrinoma\GalleryBundle\Dto\FileApiDtoInterface;
 use Evrinoma\GalleryBundle\Exception\File\FileNotFoundException;
 use Evrinoma\GalleryBundle\Manager\File\QueryManagerInterface;
@@ -25,11 +24,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FileChoiceType extends AbstractType
 {
+    protected static string $dtoClass;
+
     private QueryManagerInterface $queryManager;
 
-    public function __construct(QueryManagerInterface $queryManager)
+    public function __construct(QueryManagerInterface $queryManager, string $dtoClass)
     {
         $this->queryManager = $queryManager;
+        static::$dtoClass = $dtoClass;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -38,7 +40,7 @@ class FileChoiceType extends AbstractType
             $value = [];
             try {
                 if ($options->offsetExists('data')) {
-                    $criteria = $this->queryManager->criteria(new FileApiDto());
+                    $criteria = $this->queryManager->criteria(new static::$dtoClass());
                     switch ($options->offsetGet('data')) {
                         case FileApiDtoInterface::BRIEF:
                             foreach ($criteria as $entity) {

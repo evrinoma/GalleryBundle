@@ -128,6 +128,8 @@ class EvrinomaGalleryExtension extends Extension
 
         $this->wireConstraintTag($container);
 
+        $this->wireForm($container, FileApiDto::class, 'file', 'file');
+
         if ($config['decorates']) {
             $remap = [];
             foreach ($config['decorates'] as $key => $service) {
@@ -205,6 +207,12 @@ class EvrinomaGalleryExtension extends Extension
         $definitionAdaptor = new Definition(AdaptorRegistry::class);
         $definitionAdaptor->addArgument($registry);
         $container->addDefinitions(['evrinoma.'.$this->getAlias().'.adaptor' => $definitionAdaptor]);
+    }
+
+    private function wireForm(ContainerBuilder $container, string $class, string $name, string $form): void
+    {
+        $definitionBridgeCreate = $container->getDefinition('evrinoma.'.$this->getAlias().'.'.$name.'.form.rest.'.$form);
+        $definitionBridgeCreate->setArgument(1, $class);
     }
 
     private function wireRepository(ContainerBuilder $container, Reference $registry, string $madiator, string $name, string $class, string $driver): void
