@@ -71,7 +71,9 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
         $this->testResponseStatusCreated();
 
         static::$files = [];
-        $query = static::getDefault([FileApiDtoInterface::BRIEF => str_shuffle(Brief::value())]);
+        $query = static::getDefault([
+            FileApiDtoInterface::BRIEF => str_shuffle(Brief::value()),
+        ]);
 
         $this->post($query);
         $this->testResponseStatusCreated();
@@ -79,26 +81,45 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria([FileApiDtoInterface::DTO_CLASS => static::getDtoClass(), FileApiDtoInterface::ACTIVE => Active::wrong()]);
+        $find = $this->criteria([
+            FileApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            FileApiDtoInterface::ACTIVE => Active::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
 
-        $find = $this->criteria([FileApiDtoInterface::DTO_CLASS => static::getDtoClass(), FileApiDtoInterface::ID => Id::value(), FileApiDtoInterface::ACTIVE => Active::block(), FileApiDtoInterface::DESCRIPTION => Description::wrong()]);
+        $find = $this->criteria([
+            FileApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            FileApiDtoInterface::ID => Id::value(),
+            FileApiDtoInterface::ACTIVE => Active::block(),
+            FileApiDtoInterface::DESCRIPTION => Description::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria([FileApiDtoInterface::DTO_CLASS => static::getDtoClass(), FileApiDtoInterface::ACTIVE => Active::value(), FileApiDtoInterface::ID => Id::value()]);
+        $find = $this->criteria([
+            FileApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            FileApiDtoInterface::ACTIVE => Active::value(),
+            FileApiDtoInterface::ID => Id::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([FileApiDtoInterface::DTO_CLASS => static::getDtoClass(), FileApiDtoInterface::ACTIVE => Active::delete()]);
+        $find = $this->criteria([
+            FileApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            FileApiDtoInterface::ACTIVE => Active::delete(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(3, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([FileApiDtoInterface::DTO_CLASS => static::getDtoClass(), FileApiDtoInterface::ACTIVE => Active::delete(), FileApiDtoInterface::DESCRIPTION => Description::default()]);
+        $find = $this->criteria([
+            FileApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            FileApiDtoInterface::ACTIVE => Active::delete(),
+            FileApiDtoInterface::DESCRIPTION => Description::default(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find[PayloadModel::PAYLOAD]);
     }
@@ -119,7 +140,11 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
 
     public function actionPut(): void
     {
-        $query = static::getDefault([FileApiDtoInterface::ID => Id::value(), FileApiDtoInterface::DESCRIPTION => Description::value(), FileApiDtoInterface::BRIEF => Brief::value()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => Id::value(),
+            FileApiDtoInterface::DESCRIPTION => Description::value(),
+            FileApiDtoInterface::BRIEF => Brief::value(),
+        ]);
 
         $find = $this->assertGet(Id::value());
 
@@ -157,7 +182,7 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -178,34 +203,52 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::BRIEF => Brief::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::BRIEF => Brief::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::POSITION => Position::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::POSITION => Position::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::DESCRIPTION => Description::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::DESCRIPTION => Description::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][FileApiDtoInterface::IMAGE]);
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::IMAGE => Image::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::IMAGE => Image::blank(),
+        ]);
         static::$files[static::getDtoClass()] = [];
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::IMAGE => Image::blank(),
+        ]);
         static::$files = [];
 
         $this->put($query);
@@ -222,7 +265,10 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
         $this->createFile();
         $this->testResponseStatusConflict();
 
-        $query = static::getDefault([FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID], FileApiDtoInterface::BRIEF => Brief::value()]);
+        $query = static::getDefault([
+            FileApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][FileApiDtoInterface::ID],
+            FileApiDtoInterface::BRIEF => Brief::value(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusConflict();

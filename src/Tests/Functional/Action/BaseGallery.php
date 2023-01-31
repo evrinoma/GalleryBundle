@@ -80,26 +80,45 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria([GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(), GalleryApiDtoInterface::ACTIVE => Active::wrong()]);
+        $find = $this->criteria([
+            GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            GalleryApiDtoInterface::ACTIVE => Active::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
 
-        $find = $this->criteria([GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(), GalleryApiDtoInterface::ID => Id::value(), GalleryApiDtoInterface::ACTIVE => Active::block(), GalleryApiDtoInterface::TITLE => Title::wrong()]);
+        $find = $this->criteria([
+            GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            GalleryApiDtoInterface::ID => Id::value(),
+            GalleryApiDtoInterface::ACTIVE => Active::block(),
+            GalleryApiDtoInterface::TITLE => Title::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria([GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(), GalleryApiDtoInterface::ACTIVE => Active::value(), GalleryApiDtoInterface::ID => Id::value()]);
+        $find = $this->criteria([
+            GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            GalleryApiDtoInterface::ACTIVE => Active::value(),
+            GalleryApiDtoInterface::ID => Id::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(), GalleryApiDtoInterface::ACTIVE => Active::delete()]);
+        $find = $this->criteria([
+            GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            GalleryApiDtoInterface::ACTIVE => Active::delete(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(3, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(), GalleryApiDtoInterface::ACTIVE => Active::delete(), GalleryApiDtoInterface::TITLE => Title::value()]);
+        $find = $this->criteria([
+            GalleryApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            GalleryApiDtoInterface::ACTIVE => Active::delete(),
+            GalleryApiDtoInterface::TITLE => Title::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find[PayloadModel::PAYLOAD]);
     }
@@ -120,7 +139,12 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
 
     public function actionPut(): void
     {
-        $query = static::getDefault([GalleryApiDtoInterface::ID => Id::value(), GalleryApiDtoInterface::TITLE => Title::value(), GalleryApiDtoInterface::POSITION => Position::value(), GalleryApiDtoInterface::DESCRIPTION => Description::value()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => Id::value(),
+            GalleryApiDtoInterface::TITLE => Title::value(),
+            GalleryApiDtoInterface::POSITION => Position::value(),
+            GalleryApiDtoInterface::DESCRIPTION => Description::value(),
+        ]);
 
         $find = $this->assertGet(Id::value());
 
@@ -158,7 +182,7 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -179,40 +203,63 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::TITLE => Title::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::TITLE => Title::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::POSITION => Position::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::POSITION => Position::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::DESCRIPTION => Description::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::DESCRIPTION => Description::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][GalleryApiDtoInterface::IMAGE]);
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::IMAGE => Image::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][GalleryApiDtoInterface::PREVIEW]);
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],  GalleryApiDtoInterface::PREVIEW => Preview::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::PREVIEW => Preview::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::PREVIEW => Preview::empty(), GalleryApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::PREVIEW => Preview::blank(),
+            GalleryApiDtoInterface::IMAGE => Image::blank(),
+        ]);
         static::$files[static::getDtoClass()] = [];
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID], GalleryApiDtoInterface::IMAGE => Image::empty(), GalleryApiDtoInterface::PREVIEW => Preview::empty()]);
+        $query = static::getDefault([
+            GalleryApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][GalleryApiDtoInterface::ID],
+            GalleryApiDtoInterface::IMAGE => Image::blank(),
+            GalleryApiDtoInterface::PREVIEW => Preview::blank(),
+        ]);
         static::$files = [];
 
         $this->put($query);

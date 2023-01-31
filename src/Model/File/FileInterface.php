@@ -19,8 +19,9 @@ use Evrinoma\UtilsBundle\Entity\BriefInterface;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtInterface;
 use Evrinoma\UtilsBundle\Entity\DescriptionInterface;
 use Evrinoma\UtilsBundle\Entity\IdInterface;
+use Evrinoma\UtilsBundle\Entity\ImageInterface;
 
-interface FileInterface extends ActiveInterface, IdInterface, DescriptionInterface, BriefInterface, CreateUpdateAtInterface
+interface FileInterface extends ActiveInterface, IdInterface, DescriptionInterface, BriefInterface, CreateUpdateAtInterface, ImageInterface
 {
     public function resetGallery(): FileInterface;
 
