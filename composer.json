@@ -48,9 +48,23 @@
         "jms/serializer-bundle": "^3.1",
         "symfony/dotenv": "5.2.*",
         "symfony/dependency-injection": "^5.4",
-        "evrinoma/test-utils-bundle": "dev-master"
+        "evrinoma/test-utils-bundle": "dev-master",
+        "evrinoma/hooks-bundle": "dev-master"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "hooks": "vendor/bin/hooks evrinoma:hooks:create"
+        },
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "pre-package-uninstall": ["vendor/bin/hooks evrinoma:hooks:delete", "true"]
     },
     "repositories": {
+        "hooks": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/HooksBundle.git"
+        },
         "dto": {
             "type": "vcs",
             "url": "https://github.com/evrinoma/DtoBundle.git"
