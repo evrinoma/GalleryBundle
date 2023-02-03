@@ -40,6 +40,7 @@ return (new PhpCsFixer\Config())
         'declare_strict_types' => true,
         'no_superfluous_phpdoc_tags' => false,
         'self_accessor' => false,
+        'phpdoc_separation' => false,
     ])
     ->setRiskyAllowed(true)
     ->setFinder(
