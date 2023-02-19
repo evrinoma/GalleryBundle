@@ -16,5 +16,5 @@ namespace Evrinoma\GalleryBundle\Fixtures;
 interface FixtureInterface
 {
     public const GALLERY_FIXTURES = 'GALLERY_FIXTURES';
-    public const FILE_FIXTURES = 'FILE_FIXTURES';
+    public const GALLERY_FILE_FIXTURES = 'GALLERY_FILE_FIXTURES';
 }

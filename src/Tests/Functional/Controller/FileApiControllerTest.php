@@ -32,6 +32,6 @@ final class FileApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::FILE_FIXTURES];
+        return [FixtureInterface::GALLERY_FILE_FIXTURES];
     }
 }

@@ -128,7 +128,7 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::FILE_FIXTURES,
+            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::GALLERY_FILE_FIXTURES,
         ];
     }
 
