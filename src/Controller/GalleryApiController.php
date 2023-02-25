@@ -100,6 +100,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
         try {
             $this->facade->post($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -151,6 +152,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
         try {
             $this->facade->put($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -200,6 +202,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
         try {
             $this->facade->delete($galleryApiDto, '', $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -283,6 +286,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
         try {
             $this->facade->criteria($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -331,6 +335,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
         try {
             $this->facade->get($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
