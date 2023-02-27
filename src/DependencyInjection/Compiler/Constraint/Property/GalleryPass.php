@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class GalleryPass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const GALLERY_CONSTRAINT = 'evrinoma.gallery.constraint.gallery.property';
+    public const GALLERY_CONSTRAINT = 'evrinoma.gallery.constraint.property.gallery';
 
     protected static string $alias = self::GALLERY_CONSTRAINT;
     protected static string $class = GalleryValidator::class;
