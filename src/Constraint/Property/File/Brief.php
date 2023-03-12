@@ -29,6 +29,6 @@ class Brief implements ConstraintInterface
 
     public function getPropertyName(): string
     {
-        return 'breif';
+        return 'brief';
     }
 }

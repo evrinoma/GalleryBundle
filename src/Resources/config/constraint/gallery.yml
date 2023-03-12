@@ -1,7 +1,4 @@
 services:
-  evrinoma.gallery.constraint.property.gallery.body:
-    class: Evrinoma\GalleryBundle\Constraint\Property\Gallery\Body
-
   evrinoma.gallery.constraint.property.gallery.title:
     class: Evrinoma\GalleryBundle\Constraint\Property\Gallery\Title
 
