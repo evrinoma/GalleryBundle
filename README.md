@@ -119,7 +119,7 @@ vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php
 
 # Тесты:
 
-    composer install --dev
+    COMPOSER_NO_DEV=0 composer install
 
 ### run all tests
 
