@@ -16,5 +16,7 @@ namespace Evrinoma\GalleryBundle\Repository;
 interface AliasInterface
 {
     public const GALLERY = 'gallery';
+    public const GALLERIES = 'galleries';
     public const FILE = 'file';
+    public const FILES = AliasInterface::FILE.'s';
 }
