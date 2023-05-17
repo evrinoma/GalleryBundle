@@ -113,7 +113,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
-            ++$i;
+            $i++;
         }
 
         return $this;
