@@ -54,14 +54,14 @@ trait BaseFileTestTrait
 
     protected function createConstraintBlankBrief(): array
     {
-        $query = static::getDefault([FileApiDtoInterface::DESCRIPTION => '']);
+        $query = static::getDefault([FileApiDtoInterface::BRIEF => '']);
 
         return $this->post($query);
     }
 
     protected function createConstraintBlankDescription(): array
     {
-        $query = static::getDefault([FileApiDtoInterface::BRIEF => '']);
+        $query = static::getDefault([FileApiDtoInterface::DESCRIPTION => '']);
 
         return $this->post($query);
     }
