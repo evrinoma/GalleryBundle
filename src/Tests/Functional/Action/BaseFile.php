@@ -72,7 +72,7 @@ class BaseFile extends AbstractServiceTest implements BaseFileTestInterface
 
         static::$files = [];
         $query = static::getDefault([
-            FileApiDtoInterface::BRIEF => mb_strtoupper(str_shuffle(Brief::value())),
+            FileApiDtoInterface::BRIEF => mb_strtoupper(str_shuffle(Brief::value().Brief::default())),
         ]);
 
         $find = $this->post($query);
