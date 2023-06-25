@@ -90,6 +90,11 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
 
     protected static string $class = BaseGallery::class;
 
+    public static function getReferenceName(): string
+    {
+        return FileFixtures::getReferenceName().parent::getReferenceName();
+    }
+
     /**
      * @param ObjectManager $manager
      *
