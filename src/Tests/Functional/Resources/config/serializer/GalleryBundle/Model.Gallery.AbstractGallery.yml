@@ -71,3 +71,10 @@ Evrinoma\GalleryBundle\Model\Gallery\AbstractGallery:
           API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
       ]
       expose: true
+    type:
+      type: Evrinoma\GalleryBundle\Model\Type\AbstractType
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+      expose: true

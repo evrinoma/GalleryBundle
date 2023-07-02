@@ -31,7 +31,7 @@ trait BaseFileTestTrait
         static::$files = [
             static::getDtoClass() => [
                 FileApiDtoInterface::IMAGE => $fileImage,
-                ],
+            ],
         ];
     }
 

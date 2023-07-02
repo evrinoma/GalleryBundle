@@ -23,7 +23,7 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
     protected static array $data = [
-        [
+        0 => [
             GalleryApiDtoInterface::TITLE => 'ite',
             GalleryApiDtoInterface::POSITION => 1,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -31,8 +31,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2008-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 0,
         ],
-        [
+        1 => [
             GalleryApiDtoInterface::TITLE => 'kzkt',
             GalleryApiDtoInterface::POSITION => 2,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -40,8 +41,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2015-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 1,
         ],
-        [
+        2 => [
             GalleryApiDtoInterface::TITLE => 'c2m',
             GalleryApiDtoInterface::POSITION => 3,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -49,8 +51,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2020-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 2,
         ],
-        [
+        3 => [
             GalleryApiDtoInterface::TITLE => 'kzkt2',
             GalleryApiDtoInterface::POSITION => 1,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -58,8 +61,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2015-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 3,
         ],
-        [
+        4 => [
             GalleryApiDtoInterface::TITLE => 'nvr',
             GalleryApiDtoInterface::POSITION => 2,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -67,8 +71,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2010-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 4,
         ],
-        [
+        5 => [
             GalleryApiDtoInterface::TITLE => 'nvr2',
             GalleryApiDtoInterface::POSITION => 3,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -76,8 +81,9 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2010-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 5,
         ],
-        [
+        6 => [
             GalleryApiDtoInterface::TITLE => 'nvr3',
             GalleryApiDtoInterface::POSITION => 1,
             GalleryApiDtoInterface::DESCRIPTION => 'desc',
@@ -85,6 +91,7 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
             GalleryApiDtoInterface::START => '2011-10-23 10:21:50',
             GalleryApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             GalleryApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            GalleryApiDtoInterface::TYPE => 6,
         ],
     ];
 
@@ -105,11 +112,13 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
     protected function create(ObjectManager $manager): self
     {
         $short = static::getReferenceName();
+        $shortType = TypeFixtures::getReferenceName();
         $i = 0;
 
         foreach ($this->getData() as $record) {
             $entity = $this->getEntity();
             $entity
+                ->setType($this->getReference($shortType.$record[GalleryApiDtoInterface::TYPE]))
                 ->setPreview($record[GalleryApiDtoInterface::PREVIEW])
                 ->setActive($record[GalleryApiDtoInterface::ACTIVE])
                 ->setTitle($record[GalleryApiDtoInterface::TITLE])
@@ -133,12 +142,12 @@ class GalleryFixtures extends AbstractFixture implements FixtureGroupInterface, 
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::GALLERY_FILE_FIXTURES,
+            FixtureInterface::GALLERY_FIXTURES,
         ];
     }
 
     public function getOrder()
     {
-        return 0;
+        return 100;
     }
 }

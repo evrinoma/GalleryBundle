@@ -8,3 +8,8 @@ services:
     class: Evrinoma\GalleryBundle\Fixtures\FileFixtures
     tags:
       - { name: doctrine.fixture.orm }
+
+  evrinoma.gallery.fixtures.type:
+    class: Evrinoma\GalleryBundle\Fixtures\TypeFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

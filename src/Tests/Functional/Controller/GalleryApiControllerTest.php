@@ -32,6 +32,9 @@ final class GalleryApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::GALLERY_FIXTURES];
+        return [
+            FixtureInterface::GALLERY_FIXTURES,
+            FixtureInterface::GALLERY_TYPE_FIXTURES,
+        ];
     }
 }

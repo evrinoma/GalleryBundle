@@ -84,5 +84,6 @@ trait BaseGalleryTestTrait
         Assert::assertArrayHasKey(GalleryApiDtoInterface::POSITION, $entity);
         Assert::assertArrayHasKey(GalleryApiDtoInterface::DESCRIPTION, $entity);
         Assert::assertArrayHasKey(GalleryApiDtoInterface::START, $entity);
+        Assert::assertArrayHasKey(GalleryApiDtoInterface::TYPE, $entity);
     }
 }

@@ -64,6 +64,7 @@ class BaseGallery extends AbstractServiceTest implements BaseGalleryTestInterfac
             GalleryApiDtoInterface::START => Start::default(),
             GalleryApiDtoInterface::IMAGE => Image::default(),
             GalleryApiDtoInterface::PREVIEW => Preview::default(),
+            GalleryApiDtoInterface::TYPE => BaseType::defaultData(),
         ];
     }
 

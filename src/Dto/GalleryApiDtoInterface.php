@@ -22,8 +22,9 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Immutable\TypeApiDtoInterface;
 
-interface GalleryApiDtoInterface extends DtoInterface, IdInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
+interface GalleryApiDtoInterface extends DtoInterface, IdInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface, TypeApiDtoInterface
 {
     public const GALLERY = 'gallery';
 }

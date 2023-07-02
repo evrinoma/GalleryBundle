@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
+use Evrinoma\GalleryBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
 use Evrinoma\UtilsBundle\Entity\DescriptionTrait;
@@ -60,6 +61,12 @@ abstract class AbstractGallery implements GalleryInterface
      */
     protected $file;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Evrinoma\GalleryBundle\Model\Type\TypeInterface")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     */
+    protected TypeInterface $type;
+
     public function __construct()
     {
         $this->file = new ArrayCollection();
@@ -81,6 +88,18 @@ abstract class AbstractGallery implements GalleryInterface
     public function setFile($file): GalleryInterface
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    public function getType(): TypeInterface
+    {
+        return $this->type;
+    }
+
+    public function setType(TypeInterface $type): GalleryInterface
+    {
+        $this->type = $type;
 
         return $this;
     }

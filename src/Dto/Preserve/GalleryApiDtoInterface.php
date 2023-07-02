@@ -21,7 +21,8 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Mutable\TypeApiDtoInterface;
 
-interface GalleryApiDtoInterface extends IdInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
+interface GalleryApiDtoInterface extends IdInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface, TypeApiDtoInterface
 {
 }

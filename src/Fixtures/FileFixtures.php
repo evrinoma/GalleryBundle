@@ -24,7 +24,7 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 class FileFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
     protected static array $data = [
-        [
+        0 => [
             FileApiDtoInterface::BRIEF => 'ite',
             FileApiDtoInterface::DESCRIPTION => 'description ite',
             FileApiDtoInterface::ACTIVE => 'a',
@@ -32,7 +32,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::POSITION => 1,
             GalleryApiDtoInterface::GALLERY => 0,
         ],
-        [
+        1 => [
             FileApiDtoInterface::BRIEF => 'kzkt',
             FileApiDtoInterface::DESCRIPTION => 'description kzkt',
             FileApiDtoInterface::ACTIVE => 'a',
@@ -40,7 +40,7 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::POSITION => 2,
             GalleryApiDtoInterface::GALLERY => 1,
         ],
-        [
+        2 => [
             FileApiDtoInterface::BRIEF => 'c2m',
             FileApiDtoInterface::DESCRIPTION => 'description c2m',
             FileApiDtoInterface::ACTIVE => 'a',
@@ -48,15 +48,15 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::POSITION => 3,
             GalleryApiDtoInterface::GALLERY => 0,
         ],
-        [
+        3 => [
             FileApiDtoInterface::BRIEF => 'kzkt2',
             FileApiDtoInterface::DESCRIPTION => 'description kzkt2',
             FileApiDtoInterface::ACTIVE => 'd',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 4,
             GalleryApiDtoInterface::GALLERY => 1,
-            ],
-        [
+        ],
+        4 => [
             FileApiDtoInterface::BRIEF => 'nvr',
             FileApiDtoInterface::DESCRIPTION => 'description nvr',
             FileApiDtoInterface::ACTIVE => 'b',
@@ -64,15 +64,15 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
             FileApiDtoInterface::POSITION => 5,
             GalleryApiDtoInterface::GALLERY => 0,
         ],
-        [
+        5 => [
             FileApiDtoInterface::BRIEF => 'nvr2',
             FileApiDtoInterface::DESCRIPTION => 'description nvr2',
             FileApiDtoInterface::ACTIVE => 'd',
             FileApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             FileApiDtoInterface::POSITION => 6,
             GalleryApiDtoInterface::GALLERY => 1,
-            ],
-        [
+        ],
+        6 => [
             FileApiDtoInterface::BRIEF => 'nvr3',
             FileApiDtoInterface::DESCRIPTION => 'description nvr3',
             FileApiDtoInterface::ACTIVE => 'd',
@@ -122,12 +122,12 @@ class FileFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::GALLERY_FIXTURES, FixtureInterface::GALLERY_FILE_FIXTURES,
+            FixtureInterface::GALLERY_FILE_FIXTURES,
         ];
     }
 
     public function getOrder()
     {
-        return 100;
+        return 200;
     }
 }

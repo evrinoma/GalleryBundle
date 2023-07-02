@@ -17,6 +17,10 @@ interface AliasInterface
 {
     public const GALLERY = 'gallery';
     public const GALLERIES = 'galleries';
+
     public const FILE = 'file';
     public const FILES = AliasInterface::FILE.'s';
+
+    public const TYPE = 'type';
+    public const TYPES = AliasInterface::TYPE.'s';
 }

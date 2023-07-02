@@ -17,8 +17,10 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Mapping;
 use Evrinoma\GalleryBundle\DependencyInjection\EvrinomaGalleryExtension;
 use Evrinoma\GalleryBundle\Entity\File\BaseFile;
+use Evrinoma\GalleryBundle\Entity\Type\BaseType;
 use Evrinoma\GalleryBundle\Model\File\FileInterface;
 use Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface;
+use Evrinoma\GalleryBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractMapEntity;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -42,8 +44,15 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
             $entityFile = BaseFile::class;
 
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/File', '%s/Entity/File');
+            $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Type', '%s/Entity/Type');
 
-            $this->addResolveTargetEntity([$entityFile => [FileInterface::class => []]], false);
+            $this->addResolveTargetEntity(
+                [
+                    $entityFile => [FileInterface::class => []],
+                    BaseType::class => [TypeInterface::class => []],
+                ],
+                false
+            );
 
             $entityGallery = $container->getParameter('evrinoma.gallery.entity');
             if (str_contains($entityGallery, EvrinomaGalleryExtension::ENTITY)) {

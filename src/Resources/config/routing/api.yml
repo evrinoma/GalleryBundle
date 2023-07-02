@@ -6,4 +6,6 @@ gallery_file_api:
   resource: "@EvrinomaGalleryBundle/Controller/FileApiController.php"
   type: annotation
 
-
+gallery_type_api:
+  resource: "@EvrinomaGalleryBundle/Controller/TypeApiController.php"
+  type: annotation

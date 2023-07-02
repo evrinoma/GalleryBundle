@@ -1,0 +1,7 @@
+services:
+  evrinoma.gallery.constraint.property.type.description:
+    class: Evrinoma\GalleryBundle\Constraint\Property\Type\Description
+  evrinoma.gallery.constraint.property.type.brief:
+    class: Evrinoma\GalleryBundle\Constraint\Property\Type\Brief
+  evrinoma.gallery.constraint.property.type.active:
+    class: Evrinoma\GalleryBundle\Constraint\Property\Type\Active

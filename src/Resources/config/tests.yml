@@ -1,3 +1,4 @@
 imports:
   - { resource: tests/gallery.yml }
   - { resource: tests/file.yml }
+  - { resource: tests/type.yml }

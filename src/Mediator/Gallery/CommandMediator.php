@@ -15,6 +15,9 @@ namespace Evrinoma\GalleryBundle\Mediator\Gallery;
 
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\GalleryBundle\Dto\GalleryApiDtoInterface;
+use Evrinoma\GalleryBundle\Exception\Gallery\GalleryCannotBeCreatedException;
+use Evrinoma\GalleryBundle\Exception\Gallery\GalleryCannotBeSavedException;
+use Evrinoma\GalleryBundle\Manager\Type\QueryManagerInterface as TypeQueryManagerInterface;
 use Evrinoma\GalleryBundle\Model\Gallery\GalleryInterface;
 use Evrinoma\GalleryBundle\System\FileSystemInterface;
 use Evrinoma\UtilsBundle\Mediator\AbstractCommandMediator;
@@ -22,10 +25,12 @@ use Evrinoma\UtilsBundle\Mediator\AbstractCommandMediator;
 class CommandMediator extends AbstractCommandMediator implements CommandMediatorInterface
 {
     private FileSystemInterface $fileSystem;
+    private TypeQueryManagerInterface $typeQueryManager;
 
-    public function __construct(FileSystemInterface $fileSystem)
+    public function __construct(FileSystemInterface $fileSystem, TypeQueryManagerInterface $typeQueryManager)
     {
         $this->fileSystem = $fileSystem;
+        $this->typeQueryManager = $typeQueryManager;
     }
 
     public function onUpdate(DtoInterface $dto, $entity): GalleryInterface
@@ -44,6 +49,12 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
 
         if ($dto->hasStart()) {
             $entity->setStart(new \DateTimeImmutable($dto->getStart()));
+        }
+
+        try {
+            $entity->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
+        } catch (\Exception $e) {
+            throw new GalleryCannotBeSavedException($e->getMessage());
         }
 
         return $entity;
@@ -71,6 +82,12 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
 
         if ($dto->hasStart()) {
             $entity->setStart(new \DateTimeImmutable($dto->getStart()));
+        }
+
+        try {
+            $entity->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
+        } catch (\Exception $e) {
+            throw new GalleryCannotBeCreatedException($e->getMessage());
         }
 
         return $entity;

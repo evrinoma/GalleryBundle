@@ -17,4 +17,5 @@ interface FixtureInterface
 {
     public const GALLERY_FIXTURES = 'GALLERY_FIXTURES';
     public const GALLERY_FILE_FIXTURES = 'GALLERY_FILE_FIXTURES';
+    public const GALLERY_TYPE_FIXTURES = 'GALLERY_TYPE_FIXTURES';
 }

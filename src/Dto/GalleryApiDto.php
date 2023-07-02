@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\Dto;
 
+use Evrinoma\DtoBundle\Annotation\Dto;
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
@@ -23,6 +24,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\StartTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleTrait;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Mutable\TypeApiDtoTrait;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,6 +38,12 @@ class GalleryApiDto extends AbstractDto implements GalleryApiDtoInterface
     use PreviewTrait;
     use StartTrait;
     use TitleTrait;
+    use TypeApiDtoTrait;
+
+    /**
+     * @Dto(class="Evrinoma\GalleryBundle\Dto\TypeApiDto", generator="genRequestTypeApiDto")
+     */
+    protected ?TypeApiDtoInterface $typeApiDto = null;
 
     public function toDto(Request $request): DtoInterface
     {

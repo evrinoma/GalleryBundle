@@ -21,6 +21,7 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PreviewTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\StartTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\TitleTrait;
+use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Preserve\TypeApiDtoTrait;
 
 trait GalleryApiDtoTrait
 {
@@ -32,4 +33,5 @@ trait GalleryApiDtoTrait
     use PreviewTrait;
     use StartTrait;
     use TitleTrait;
+    use TypeApiDtoTrait;
 }

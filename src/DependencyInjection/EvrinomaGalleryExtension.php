@@ -17,12 +17,15 @@ use Evrinoma\GalleryBundle\DependencyInjection\Compiler\Constraint\Property\File
 use Evrinoma\GalleryBundle\DependencyInjection\Compiler\Constraint\Property\GalleryPass as PropertyGalleryPass;
 use Evrinoma\GalleryBundle\Dto\FileApiDto;
 use Evrinoma\GalleryBundle\Dto\GalleryApiDto;
+use Evrinoma\GalleryBundle\Dto\TypeApiDto;
 use Evrinoma\GalleryBundle\Entity\File\BaseFile;
 use Evrinoma\GalleryBundle\Entity\Gallery\BaseGallery;
+use Evrinoma\GalleryBundle\Entity\Type\BaseType;
 use Evrinoma\GalleryBundle\EvrinomaGalleryBundle;
 use Evrinoma\GalleryBundle\Factory\Gallery\Factory as GalleryFactory;
 use Evrinoma\GalleryBundle\Mediator\File\QueryMediatorInterface as FileQueryMediatorInterface;
 use Evrinoma\GalleryBundle\Mediator\Gallery\QueryMediatorInterface as GalleryQueryMediatorInterface;
+use Evrinoma\GalleryBundle\Mediator\Type\QueryMediatorInterface as TypeQueryMediatorInterface;
 use Evrinoma\UtilsBundle\Adaptor\AdaptorRegistry;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;
 use Evrinoma\UtilsBundle\Handler\BaseHandler;
@@ -99,6 +102,7 @@ class EvrinomaGalleryExtension extends Extension
 
         $this->wireMediator($container, GalleryQueryMediatorInterface::class, $config['db_driver'], 'gallery');
         $this->wireMediator($container, FileQueryMediatorInterface::class, $config['db_driver'], 'file');
+        $this->wireMediator($container, TypeQueryMediatorInterface::class, $config['db_driver'], 'type');
 
         $this->remapParametersNamespaces(
             $container,
@@ -114,13 +118,16 @@ class EvrinomaGalleryExtension extends Extension
         if ($registry && isset(self::$doctrineDrivers[$config['db_driver']])) {
             $this->wireRepository($container, $registry, GalleryQueryMediatorInterface::class, 'gallery', $config['entity'], $config['db_driver']);
             $this->wireRepository($container, $registry, FileQueryMediatorInterface::class, 'file', BaseFile::class, $config['db_driver']);
+            $this->wireRepository($container, $registry, TypeQueryMediatorInterface::class, 'type', BaseType::class, $config['db_driver']);
         }
 
         $this->wireController($container, 'gallery', $config['dto']);
         $this->wireController($container, 'file', FileApiDto::class);
+        $this->wireController($container, 'type', TypeApiDto::class);
 
         $this->wireValidator($container, 'gallery', $config['entity']);
         $this->wireValidator($container, 'file', BaseFile::class);
+        $this->wireValidator($container, 'type', BaseType::class);
 
         if ($config['constraints']) {
             $loader->load('validation.yml');
@@ -129,6 +136,7 @@ class EvrinomaGalleryExtension extends Extension
         $this->wireConstraintTag($container);
 
         $this->wireForm($container, FileApiDto::class, 'file', 'file');
+        $this->wireForm($container, TypeApiDto::class, 'type', 'type');
 
         if ($config['decorates']) {
             $remap = [];
