@@ -18,7 +18,7 @@ use Evrinoma\GalleryBundle\DtoCommon\ValueObject\Immutable\GalleryApiDtoInterfac
 use Evrinoma\GalleryBundle\Repository\AliasInterface as GalleryAliasInterface;
 use Evrinoma\UtilsBundle\QueryBuilder\QueryBuilderInterface;
 
-trait CommonFcrMediatorTrait
+trait CommonGalleryMediatorTrait
 {
     protected function joinGallery(DtoInterface $dto, QueryBuilderInterface $builder, string $alias): void
     {
