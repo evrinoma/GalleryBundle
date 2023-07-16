@@ -1,0 +1,74 @@
+Evrinoma\GalleryBundle\Model\Gallery\AbstractGallery:
+  attributes:
+    id:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    createdAt:
+      contexts:
+        type:
+          context:
+            datetime_format: 'Y-m-d H:i'
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    updatedAt:
+      contexts:
+        type:
+          context:
+            datetime_format: 'Y-m-d H:i'
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    active:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    title:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    position:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    image:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    preview:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    description:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    start:
+      contexts:
+        type:
+          context:
+            datetime_format: 'Y-m-d'
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    file:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    type:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]

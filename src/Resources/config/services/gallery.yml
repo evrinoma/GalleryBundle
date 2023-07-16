@@ -6,7 +6,7 @@ services:
   evrinoma.gallery.gallery.api.controller:
     class: Evrinoma\GalleryBundle\Controller\GalleryApiController
     arguments:
-      - '@jms_serializer'
+      - '@evrinoma.utils.serializer'
       - '@request_stack'
       - '@evrinoma.dto.factory'
       - '@evrinoma.gallery.gallery.facade'
@@ -102,3 +102,11 @@ services:
 
   Evrinoma\GalleryBundle\System\FileSystemInterface:
     alias: evrinoma.gallery.gallery.system.file_system
+
+  evrinoma.gallery.gallery.serializer.gallery:
+    class: Evrinoma\GalleryBundle\Serializer\Symfony\ConfigurationGallery
+    public: true
+    arguments:
+      - '%kernel.project_dir%'
+    tags:
+      - { name: 'evrinoma.serializer' }

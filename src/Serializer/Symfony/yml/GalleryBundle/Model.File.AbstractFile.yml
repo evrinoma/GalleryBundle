@@ -1,0 +1,37 @@
+Evrinoma\GalleryBundle\Model\File\AbstractFile:
+  attributes:
+    id:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    brief:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    description:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    active:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    position:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    image:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]
+    gallery:
+      groups: [
+          API_GET_GALLERY, API_POST_GALLERY, API_PUT_GALLERY,
+          API_GET_GALLERY_FILE, API_POST_GALLERY_FILE, API_PUT_GALLERY_FILE,
+      ]

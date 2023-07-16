@@ -45,7 +45,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.10",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "jms/serializer-bundle": "^3.1",
+        "symfony/serializer": "^6.0",
         "symfony/dotenv": "5.2.*",
         "symfony/dependency-injection": "^5.4",
         "evrinoma/test-utils-bundle": "dev-master",

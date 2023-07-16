@@ -40,6 +40,6 @@ class Kernel extends AbstractApiKernel
 
     protected function getBundleConfig(): array
     {
-        return ['framework.yaml', 'jms_serializer.yaml'];
+        return ['framework.yaml'];
     }
 }
