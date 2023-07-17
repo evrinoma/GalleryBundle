@@ -48,7 +48,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('query')->defaultNull()->info('This option is used to query gallery decoration')->end()
             ->end()->end()
             ->arrayNode('serializer')->addDefaultsIfNotSet()->children()
-            ->scalarNode('enabled')->defaultTrue()->info('This option is used to enable/disable basic video_content serializers')->end()
+            ->scalarNode('enabled')->defaultFalse()->info('This option is used to enable/disable basic video_content serializers')->end()
             ->scalarNode('path')->cannotBeEmpty()->defaultValue(getcwd())->end()
             ->end()->end()
             ->arrayNode('services')->addDefaultsIfNotSet()->children()

@@ -40,6 +40,9 @@ class Kernel extends AbstractApiKernel
 
     protected function getBundleConfig(): array
     {
-        return ['framework.yaml'];
+        return [
+            'framework.yaml',
+            'evrinoma.yaml',
+        ];
     }
 }
