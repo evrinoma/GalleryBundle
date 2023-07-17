@@ -103,10 +103,3 @@ services:
   Evrinoma\GalleryBundle\System\FileSystemInterface:
     alias: evrinoma.gallery.gallery.system.file_system
 
-  evrinoma.gallery.gallery.serializer.gallery:
-    class: Evrinoma\GalleryBundle\Serializer\Symfony\ConfigurationGallery
-    public: true
-    arguments:
-      - '%kernel.project_dir%'
-    tags:
-      - { name: 'evrinoma.serializer' }

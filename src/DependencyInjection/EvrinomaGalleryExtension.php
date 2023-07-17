@@ -135,6 +135,11 @@ class EvrinomaGalleryExtension extends Extension
 
         $this->wireConstraintTag($container);
 
+        if ($config['serializer']['enabled']) {
+            $loader->load('serializers.yml');
+            $this->wireSerializer($container, $config['serializer']['path']);
+        }
+
         $this->wireForm($container, FileApiDto::class, 'file', 'file');
         $this->wireForm($container, TypeApiDto::class, 'type', 'type');
 
@@ -183,6 +188,16 @@ class EvrinomaGalleryExtension extends Extension
                 $config['services'],
                 ['' => $remap]
             );
+        }
+    }
+
+    private function wireSerializer(ContainerBuilder $container, string $path): void
+    {
+        foreach ($container->findTaggedServiceIds('evrinoma.serializer') as $key => $item) {
+            if (strcmp('evrinoma.'.$this->getAlias(), $key)) {
+                $definition = $container->getDefinition($key);
+                $definition->setArgument(0, $path);
+            }
         }
     }
 

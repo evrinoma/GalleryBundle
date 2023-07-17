@@ -1,0 +1,4 @@
+imports:
+  - { resource: serializers/gallery.yml }
+  - { resource: serializers/file.yml }
+  - { resource: serializers/type.yml }

@@ -94,11 +94,3 @@ services:
     arguments:
       - '@evrinoma.gallery.type.query.manager'
     tags: { - name: form.type }
-
-  evrinoma.gallery.type.serializer.type:
-    class: Evrinoma\GalleryBundle\Serializer\Symfony\ConfigurationType
-    public: true
-    arguments:
-      - '%kernel.project_dir%'
-    tags:
-      - { name: 'evrinoma.serializer' }

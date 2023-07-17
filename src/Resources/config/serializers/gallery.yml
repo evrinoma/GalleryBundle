@@ -1,0 +1,6 @@
+services:
+  evrinoma.gallery.gallery.serializer.gallery:
+    class: Evrinoma\GalleryBundle\Serializer\Symfony\ConfigurationGallery
+    public: true
+    tags:
+      - { name: 'evrinoma.serializer' }
