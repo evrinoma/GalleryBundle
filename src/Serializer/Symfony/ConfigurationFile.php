@@ -17,5 +17,5 @@ use Evrinoma\UtilsBundle\Serialize\AbstractConfiguration;
 
 class ConfigurationFile extends AbstractConfiguration
 {
-    protected string $fileName = '/src/Serializer/Symfony/yml/GalleryBundle/Model.File.AbstractFile.yml';
+    protected string $fileName = '/src/Resources/serializer/Symfony/serializer/GalleryBundle/Model.File.AbstractFile.yml';
 }
