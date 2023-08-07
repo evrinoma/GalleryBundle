@@ -75,7 +75,7 @@ class EvrinomaGalleryExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         if (self::ENTITY_FACTORY_GALLERY !== $config['factory']) {
-            $this->wireFactory($container, $config['factory'], $config['entity']);
+            $this->wireFactory($container, 'gallery', $config['factory'], $config['entity']);
         } else {
             $definitionFactory = $container->getDefinition('evrinoma.'.$this->getAlias().'.gallery.factory');
             $definitionFactory->setArgument(0, $config['entity']);
