@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Evrinoma\GalleryBundle\DtoCommon\ValueObject\Immutable;
 
-use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\GalleryBundle\Dto\TypeApiDto;
 use Evrinoma\GalleryBundle\Dto\TypeApiDtoInterface;
 use Symfony\Component\HttpFoundation\Request;
