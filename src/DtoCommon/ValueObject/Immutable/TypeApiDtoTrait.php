@@ -29,11 +29,7 @@ trait TypeApiDtoTrait
         if ($request) {
             $type = $request->get(TypeApiDtoInterface::TYPE);
             if ($type) {
-                $newRequest = $this->getCloneRequest();
-                $type[DtoInterface::DTO_CLASS] = static::$classTypeApiDto;
-                $newRequest->request->add($type);
-
-                yield $newRequest;
+                yield $this->toRequest($type, static::$classTypeApiDto);
             }
         }
     }

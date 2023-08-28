@@ -29,11 +29,7 @@ trait FileApiDtoTrait
         if ($request) {
             $file = $request->get(FileApiDtoInterface::FILE);
             if ($file) {
-                $newRequest = $this->getCloneRequest();
-                $file[DtoInterface::DTO_CLASS] = static::$classFileApiDto;
-                $newRequest->request->add($file);
-
-                yield $newRequest;
+                yield $this->toRequest($file, static::$classFileApiDto);
             }
         }
     }

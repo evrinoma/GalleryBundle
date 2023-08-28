@@ -29,11 +29,7 @@ trait GalleryApiDtoTrait
         if ($request) {
             $gallery = $request->get(GalleryApiDtoInterface::GALLERY);
             if ($gallery) {
-                $newRequest = $this->getCloneRequest();
-                $gallery[DtoInterface::DTO_CLASS] = static::$classGalleryApiDto;
-                $newRequest->request->add($gallery);
-
-                yield $newRequest;
+                yield $this->toRequest($gallery, static::$classGalleryApiDto);
             }
         }
     }
