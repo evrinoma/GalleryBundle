@@ -87,7 +87,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Create gallery")
+     * @OA\Response(response=201, description="Create gallery")
      *
      * @return JsonResponse
      */

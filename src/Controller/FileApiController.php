@@ -82,7 +82,7 @@ final class FileApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Create gallery file")
+     * @OA\Response(response=201, description="Create gallery file")
      *
      * @return JsonResponse
      */

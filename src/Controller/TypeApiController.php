@@ -75,7 +75,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Create gallery type")
+     * @OA\Response(response=201, description="Create gallery type")
      *
      * @return JsonResponse
      */
