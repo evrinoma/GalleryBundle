@@ -59,7 +59,8 @@ Actions в контроллере разбиты на две группы
 
     1. API_GET_GALLERY, API_CRITERIA_GALLERY - получение галлереи
     2. API_POST_GALLERY - создание галлереи
-    3. API_PUT_GALLERY -  редактирование галлереи
+    3. API_PUT_GALLERY - редактирование галлереи
+    4. API_DELETE_GALLERY - удаление галлереи
 
 # Статусы:
 

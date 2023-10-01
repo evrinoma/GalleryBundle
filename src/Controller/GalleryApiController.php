@@ -109,7 +109,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Create gallery', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Create gallery', $json, $error);
     }
 
     /**
@@ -166,7 +166,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Save gallery', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Save gallery', $json, $error);
     }
 
     /**
@@ -208,15 +208,16 @@ final class GalleryApiController extends AbstractWrappedApiController implements
 
         $json = [];
         $error = [];
+        $group = GroupInterface::API_DELETE_GALLERY;
 
         try {
-            $this->facade->delete($galleryApiDto, '', $json);
+            $this->facade->delete($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
         }
 
-        return $this->JsonResponse('Delete gallery', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Delete gallery', $json, $error);
     }
 
     /**
@@ -300,7 +301,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get gallery', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Get gallery', $json, $error);
     }
 
     /**
@@ -349,7 +350,7 @@ final class GalleryApiController extends AbstractWrappedApiController implements
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get gallery', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Get gallery', $json, $error);
     }
 
     /**

@@ -97,7 +97,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Create gallery type', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Create gallery type', $json, $error);
     }
 
     /**
@@ -146,7 +146,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Save gallery type', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Save gallery type', $json, $error);
     }
 
     /**
@@ -188,15 +188,16 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
 
         $json = [];
         $error = [];
+        $group = GroupInterface::API_DELETE_GALLERY_TYPE;
 
         try {
-            $this->facade->delete($galleryApiDto, '', $json);
+            $this->facade->delete($galleryApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
         }
 
-        return $this->JsonResponse('Delete gallery type', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Delete gallery type', $json, $error);
     }
 
     /**
@@ -267,7 +268,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get gallery type', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Get gallery type', $json, $error);
     }
 
     /**
@@ -316,7 +317,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get gallery type', $json, $error);
+        return $this->setSerializeGroup($group)->jsonResponse('Get gallery type', $json, $error);
     }
 
     /**
