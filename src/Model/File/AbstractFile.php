@@ -46,7 +46,7 @@ abstract class AbstractFile implements FileInterface
     /**
      * @return GalleryInterface
      */
-    public function getGallery(): GalleryInterface
+    public function getGallery(): ?GalleryInterface
     {
         return $this->gallery;
     }

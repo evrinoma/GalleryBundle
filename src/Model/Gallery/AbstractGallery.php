@@ -75,7 +75,7 @@ abstract class AbstractGallery implements GalleryInterface
     /**
      * @return Collection|FileInterface[]
      */
-    public function getFile(): Collection
+    public function getFile(): ?Collection
     {
         return $this->file;
     }
@@ -92,7 +92,7 @@ abstract class AbstractGallery implements GalleryInterface
         return $this;
     }
 
-    public function getType(): TypeInterface
+    public function getType(): ?TypeInterface
     {
         return $this->type;
     }

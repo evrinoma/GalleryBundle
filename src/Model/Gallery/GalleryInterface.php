@@ -38,9 +38,9 @@ interface GalleryInterface extends ActiveInterface, CreateUpdateAtInterface, IdI
     /**
      * @return Collection|FileInterface[]
      */
-    public function getFile(): Collection;
+    public function getFile(): ?Collection;
 
-    public function getType(): TypeInterface;
+    public function getType(): ?TypeInterface;
 
     public function setType(TypeInterface $type): GalleryInterface;
 }

@@ -27,7 +27,7 @@ interface FileInterface extends ActiveInterface, IdInterface, DescriptionInterfa
 
     public function hasGallery(): bool;
 
-    public function getGallery(): GalleryInterface;
+    public function getGallery(): ?GalleryInterface;
 
     public function setGallery(GalleryInterface $gallery): FileInterface;
 }
