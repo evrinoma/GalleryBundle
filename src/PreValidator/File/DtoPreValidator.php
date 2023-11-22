@@ -48,7 +48,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkId($dto);
     }
 
-    private function checkGallery(DtoInterface $dto): self
+    protected function checkGallery(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasGalleryApiDto()) {
@@ -58,7 +58,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkActive(DtoInterface $dto): self
+    protected function checkActive(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasActive()) {
@@ -68,7 +68,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkBrief(DtoInterface $dto): self
+    protected function checkBrief(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasBrief()) {
@@ -78,7 +78,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkDescription(DtoInterface $dto): self
+    protected function checkDescription(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasDescription()) {
@@ -88,7 +88,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkId(DtoInterface $dto): self
+    protected function checkId(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasId()) {
@@ -98,7 +98,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkPosition(DtoInterface $dto): self
+    protected function checkPosition(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasPosition()) {
@@ -108,7 +108,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkImage(DtoInterface $dto): self
+    protected function checkImage(DtoInterface $dto): self
     {
         /** @var FileApiDtoInterface $dto */
         if (!$dto->hasImage()) {

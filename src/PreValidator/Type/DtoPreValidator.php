@@ -42,7 +42,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkId($dto);
     }
 
-    private function checkActive(DtoInterface $dto): self
+    protected function checkActive(DtoInterface $dto): self
     {
         /** @var TypeApiDtoInterface $dto */
         if (!$dto->hasActive()) {
@@ -52,7 +52,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkBrief(DtoInterface $dto): self
+    protected function checkBrief(DtoInterface $dto): self
     {
         /** @var TypeApiDtoInterface $dto */
         if (!$dto->hasBrief()) {
@@ -62,7 +62,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkDescriptiony(DtoInterface $dto): self
+    protected function checkDescriptiony(DtoInterface $dto): self
     {
         /** @var TypeApiDtoInterface $dto */
         if (!$dto->hasDescription()) {
@@ -72,7 +72,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         return $this;
     }
 
-    private function checkId(DtoInterface $dto): self
+    protected function checkId(DtoInterface $dto): self
     {
         /** @var TypeApiDtoInterface $dto */
         if (!$dto->hasId()) {
